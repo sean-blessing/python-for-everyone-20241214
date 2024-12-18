@@ -1,4 +1,16 @@
-items = ['wooden staff', 'wizard hat', 'cloth shoes']
+items = []
+FILE_NAME = './ch07-file-io/files/wizard-items.txt'
+
+def write_items():
+    with open(FILE_NAME, 'w', newline="") as file_out:
+        for item in items:
+            file_out.write(item+"\n")
+
+def read_items():
+    with open(FILE_NAME, newline="") as file_in: 
+        for row in file_in:
+            items.append(row.rstrip())
+    return items
 
 def print_menu():
     print('COMMAND MENU')
@@ -19,6 +31,7 @@ def grab_item():
     if len(items) < 4:        
         item = input('Item Name: ')
         items.append(item)
+        write_items()
         print(f'{item} was added')
     else:
         print("You can't carry any more items. Drop something first")
@@ -30,6 +43,7 @@ def edit_item():
     if item_nbr >= 1 and item_nbr <= len(items):
         new_name = input('Updated name: ')
         items[item_nbr-1] = new_name
+        write_items()
         print(f'Item [{item_nbr}] was updated.')
     else:
         print('Invalid item #.')
@@ -40,6 +54,7 @@ def drop_item():
     item_nbr = int(input('Item Number: '))
     if item_nbr >= 1 and item_nbr <= len(items):
         drop_item = items.pop(item_nbr - 1)
+        write_items()
         print(f'{drop_item} was dropped.')
     else:
         print('Invalid item #.')
@@ -47,6 +62,7 @@ def drop_item():
 
 def main():
     print('Welcome to the Wizard Inventory App\n')
+    read_items()
     command = ""
     while(command != 'exit'):
         print_menu()
