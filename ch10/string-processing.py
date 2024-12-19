@@ -39,6 +39,25 @@ with open('./ch10/files/movies.csv') as file_in:
         print(f'fields: {fields}')
         print(f'Movie Summary: {fields[0]} ({fields[1]}), rated {fields[2]}')
 
+print('\n p. 288 joining strings')
+first = "Bob"
+middle = "Nathan"
+last = "Jones"
 
+fullname_1 = first + " " + middle + " " + last
+print(f'fullname_1 = {fullname_1}')
+
+fullname_2 = first
+fullname_2 += " " + middle
+fullname_2 += " " + last
+print(f'fullname_2 = {fullname_2}')
+
+fullname_3 = f"{first} {middle} {last}"
+print(f'fullname_3 = {fullname_3}')
+
+names = ['Sean', 'Anjana', 'Andrew', 'Vineesh']
+delimiter = "|"
+joined_names = delimiter.join(names)
+print(f'joined_names = {joined_names}')
 
 print('Bye')
